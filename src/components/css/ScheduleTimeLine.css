@@ -1,0 +1,616 @@
+.schedule-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 30%;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
+  
+  .timeline {
+    width: 70%;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  
+  .events-table {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+  }
+  
+  .draggable-event {
+    cursor: move;
+    transition: background-color 0.3s;
+  }
+  
+  .draggable-event:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .timeline-tracks {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .track {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .track-header {
+    padding: 10px;
+    background-color: #e9ecef;
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .timeline-header {
+    display: flex;
+    margin-left: 0; /* Remove the left margin to align with timeline */
+    border-bottom: 1px solid #ddd;
+    height: 30px;
+  }
+  
+  .track-header {
+    width: 150px; /* Set fixed width for person name column */
+    padding: 10px;
+    background-color: #e9ecef;
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .time-label {
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    border-left: 1px solid #ddd;
+  }
+  
+  .track-content {
+    position: relative;
+    height: 80px;
+    background: repeating-linear-gradient(
+      90deg,
+      #f5f5f5,
+      #f5f5f5 99px,
+      #ddd 99px,
+      #ddd 100px
+    );
+    width: 2400px; /* 24 hours * 100px */
+  }
+  
+  .time-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .time-group {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    background: #f9f9f9;
+  }
+  
+  .time-group h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  
+  .timeline-event {
+    position: absolute;
+    top: 10px;
+    height: calc(100% - 20px);
+    background-color: #007bff;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    cursor: move;
+    min-width: 100px;
+  }
+  
+  .event-content {
+    font-size: 0.9em;
+    overflow: hidden;
+  }
+  
+  .event-content h3 {
+    margin: 0;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .event-content p {
+    margin: 5px 0 0;
+    font-size: 0.8em;
+  }
+  
+  .timeline-event:hover {
+    background-color: #0056b3;
+  }
+  
+  .timeline-events {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .timeline-event {
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .timeline-event h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  
+  .timeline-event p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .calendar-container {
+    margin-bottom: 20px;
+  }
+  
+  .custom-calendar {
+    width: 100%;
+    border: none !important;
+    background-color: white !important;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .react-calendar__tile--active {
+    background: #007bff !important;
+  }
+  
+  .react-calendar__tile--now {
+    background: #e6f3ff !important;
+  }
+  
+  .react-calendar__tile:enabled:hover {
+    background-color: #e6e6e6 !important;
+  }
+  
+  .template-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .template-events {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .template-event {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: move;
+    border: 2px dashed #90caf9;
+    transition: all 0.3s ease;
+  }
+  
+  .template-event:hover {
+    background-color: #bbdefb;
+    transform: translateY(-2px);
+  }
+  
+  .template-event h3 {
+    margin: 0;
+    color: #1976d2;
+  }
+  
+  .template-event p {
+    margin: 5px 0 0;
+    color: #666;
+  }
+  
+  .controls {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .delete-mode {
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-mode.active {
+    background-color: #c82333;
+  }
+  
+  .properties-panel {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .time-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .time-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .time-input input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .timeline-event.selected {
+    border: 2px solid #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+  }
+  
+  .timeline-event.delete-mode {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  .timeline-event.delete-mode:hover {
+    background-color: #dc3545;
+  }
+  
+  .event-name {
+    margin-bottom: 15px;
+  }
+  
+  .event-name label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .event-name input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .event-name input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+  }
+  
+  .timeline-event.recurring {
+    background-color: #f0f0f0;
+    border: 2px dashed #999;
+    cursor: not-allowed;
+  }
+  
+  .timeline-event.recurring:hover {
+    background-color: #e8e8e8;
+  }
+  
+  .recurring-controls {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+  }
+  
+  .recurring-days {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .day-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .day-checkbox input[type="checkbox"] {
+    margin: 0;
+  }
+  
+  .recurring-event-form {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+  }
+  
+  .recurring-event-form h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .recurring-event-form input[type="text"],
+  .recurring-event-form input[type="time"],
+  .recurring-event-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .recurring-event-form .recurring-days {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .recurring-event-form .day-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .recurring-event-form button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .recurring-event-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .people-management {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+  }
+  
+  .add-person-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-person-button:hover {
+    background-color: #218838;
+  }
+  .timeline {
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 100%;
+  }
+  
+  .timeline-header {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+  }
+  
+  .timeline-tracks {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+  }
+  
+  .track-content {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+      height: 100px; /* Fixed height for better scrolling */
+  }
+  
+  .delete-person-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-person-button:hover {
+    background-color: #c82333;
+  }
+  
+  .person-entry {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+  }
+  
+  .event-title {
+    margin-bottom: 15px;
+  }
+  
+  .event-title label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .event-title input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .event-title input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+  }
+  
+  .recurring-person-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .apply-recurring-person-button {
+    padding: 8px 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .apply-recurring-person-button:hover {
+    background-color: #5a6268;
+  }
+  .timeline {
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 100%;
+  }
+  
+  .timeline-header {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+  }
+  
+  .timeline-tracks {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+  }
+  
+  .track-content {
+      min-width: 2400px; /* 24 hours * 100px per hour */
+      height: 100px; /* Fixed height for better scrolling */
+  }
+  
+  .delete-person-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-person-button:hover {
+    background-color: #c82333;
+  }
+  
+  .person-entry {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+  }
+  
+  .event-title input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .single-event-form {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .single-event-form h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .single-event-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .single-event-form input[type="text"],
+  .single-event-form input[type="date"],
+  .single-event-form input[type="time"],
+  .single-event-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .single-event-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .single-event-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
